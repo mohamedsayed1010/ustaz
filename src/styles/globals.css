@@ -1,0 +1,564 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   USTAZ — DESIGN TOKENS  (identity v7: "Midnight")
+
+   Midnight navy is the foundation, soft orange is the one warm voice, deep
+   teal is a restrained second accent. Light mode is white cards on a cool
+   light background with navy type; dark mode is layered navy-charcoal, never
+   pure black, never a straight inversion. No beige, cream, ivory, gold,
+   saffron or yellow; no burgundy; no decorative grids.
+
+   Navy (foundation)                       light / dark
+     Navy ............ #14213D             hero, bands, headings, featured
+     Deep navy ....... #0B132B             stats band, footer, ink on orange
+     Navy raised ..... #1E3358             cards on navy (role cards, panels)
+     Navy surface .... #243B5A             navy fills in dark mode
+     Navy wash ....... #EDF2F9 / #1C283D   page headers, active nav
+
+   Soft orange (actions, highlights)
+     Orange .......... #F28C45             marks, stars, CTAs on navy, dark actions
+     Action orange ... #B4520E             light-mode buttons/links (5.1:1 white)
+     Orange wash ..... #FFF1E6 / #243149   selected rows, offers strip (dark: lifted navy)
+     Orange pale ..... #FFE0C2
+
+   Teal (secondary accent — live, pinned, discount, certified, student)
+     Teal ............ #077580 / #2CB7A5   (white text 5.7:1 / navy text 7.1:1)
+     Teal wash ....... #E8F7F5 / #13302F
+
+   Neutrals
+     Page ............ #F5F7FB / #111827   Card ...... #FFFFFF / #1B2638
+     Border .......... #E1E7F0 / #334155   Text ...... #172033 / #F1F5F9
+     Muted text ...... #58687E / #B6C2D2   (5.3:1 / 9.8:1)
+
+   Roles  Teacher orange · Student teal · Parent navy-slate #5468A8 / #A9BAF0
+   Status Success green · Warning amber (carries ink) · Danger red · Info blue
+          — all kept apart from the brand hues.
+
+   Surfaces (local themes that rescope the tokens below)
+     .stage           a navy band: white text, orange actions, navy cards
+     .stage-deep      the deeper navy of the stats band and footer
+     .bg-spotlight    navy panels inside ordinary pages
+     .surface-tokens  restores the page theme for a panel set on a band
+   ========================================================================== */
+
+@layer base {
+  :root,
+  .surface-tokens {
+    --radius: 0.625rem;
+
+    --background: 220 45% 97%;
+    --foreground: 221 38% 15%;
+
+    --surface: 220 40% 98.5%;
+    --surface-foreground: 221 38% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 221 38% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 221 38% 15%;
+
+    /* Action orange — the readable step of soft orange (5.1:1 with white). */
+    --primary: 24 85% 38%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 26 100% 95%;
+    --primary-pale: 29 100% 88%;
+
+    /* Soft orange itself — marks, stars, highlights; carries navy text. */
+    --brand: 25 87% 61%;
+    --brand-foreground: 221 51% 16%;
+
+    /* Midnight navy — the foundation. */
+    --navy: 221 51% 16%;
+    --navy-foreground: 0 0% 100%;
+    --navy-strong: 221 51% 16%;
+    --navy-deep: 226 59% 11%;
+    --navy-raised: 218 49% 23%;
+    --navy-soft: 216 45% 95%;
+
+    --secondary: 216 33% 93%;
+    --secondary-foreground: 221 38% 15%;
+
+    /* Teal — the restrained second accent. */
+    --accent: 186 89% 26%;
+    --accent-foreground: 0 0% 100%;
+    --accent-soft: 172 50% 94%;
+    --accent-strong: 186 89% 26%;
+
+    --muted: 216 33% 94%;
+    --muted-foreground: 215 18% 42%;
+
+    --border: 216 33% 91%;
+    --input: 216 24% 80%;
+    --ring: 24 85% 38%;
+
+    /* True red, kept apart from orange so danger never reads as brand. */
+    --destructive: 2 72% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 63% 31%;
+    --success-foreground: 0 0% 100%;
+
+    /* Amber, a status colour only. Carries ink. */
+    --warning: 38 92% 50%;
+    --warning-foreground: 221 38% 15%;
+
+    --info: 212 85% 45%;
+    --info-foreground: 0 0% 100%;
+
+    --destructive-strong: 2 76% 36%;
+    --success-strong: 153 63% 23%;
+    --warning-strong: 32 92% 28%;
+    --info-strong: 214 80% 36%;
+
+    --role-teacher: 24 82% 50%;
+    --role-student: 186 89% 30%;
+    --role-parent: 225 35% 50%;
+    --role-admin: 215 16% 47%;
+
+    /* The stage — navy bands (hero, schedule, closing CTA, footer). Navy in
+       both themes; .stage rescopes the page tokens inside it. */
+    --stage: 221 51% 16%;
+    --stage-foreground: 0 0% 100%;
+    --stage-muted: 214 22% 77%;
+    --stage-raised: 218 49% 23%;
+    --stage-line: 218 35% 30%;
+    --stage-deep: 226 59% 11%;
+    --stage-glow: 216 60% 42%;
+    --stage-glow-alpha: 0.35;
+
+    /* Spotlight — navy panels inside ordinary pages (next class, receipts,
+       sign-in story, course hero, certificates). */
+    --spotlight: 221 51% 16%;
+    --spotlight-foreground: 0 0% 100%;
+
+    /* Generated covers: a pale tint of the subject's hue with darker lines. */
+    --cover-s: 70%;
+    --cover-l: 94%;
+    --cover-line: 50%;
+
+    /* Series: orange, teal, navy-slate, then neutrals — never a rainbow. */
+    --chart-1: 24 85% 52%;
+    --chart-2: 186 80% 32%;
+    --chart-3: 225 35% 50%;
+    --chart-4: 215 16% 62%;
+    --chart-5: 29 90% 72%;
+
+    --logo-plate: 221 51% 16%;
+
+    --shadow-color: 221 45% 18%;
+    /* for panels lifted off a navy band; deliberately not reset by .surface-tokens */
+    --band-shadow: 226 60% 6%;
+  }
+
+  .dark,
+  .dark .surface-tokens {
+    --background: 221 39% 11%;
+    --foreground: 210 40% 96%;
+
+    --surface: 221 36% 12.5%;
+    --surface-foreground: 210 40% 96%;
+
+    --card: 217 35% 16%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 217 33% 19%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 25 87% 61%;
+    --primary-foreground: 226 59% 11%;
+    /* Dark orange at low lightness turns brown, so the dark "wash" is a lifted
+       navy; warmth comes from orange text and edges on it (5.4:1). */
+    --primary-soft: 218 32% 21%;
+    --primary-pale: 218 30% 25%;
+
+    --brand: 25 87% 61%;
+    --brand-foreground: 226 59% 11%;
+
+    --navy: 215 43% 25%;
+    --navy-foreground: 0 0% 100%;
+    --navy-strong: 216 60% 86%;
+    --navy-deep: 224 55% 9%;
+    --navy-raised: 218 45% 25%;
+    --navy-soft: 218 36% 18%;
+
+    --secondary: 217 30% 20%;
+    --secondary-foreground: 210 30% 90%;
+
+    --accent: 172 61% 44%;
+    --accent-foreground: 226 59% 11%;
+    --accent-soft: 175 40% 14%;
+    --accent-strong: 172 61% 55%;
+
+    --muted: 217 30% 19%;
+    --muted-foreground: 214 22% 77%;
+
+    --border: 215 25% 27%;
+    --input: 215 22% 34%;
+    --ring: 25 87% 61%;
+
+    --destructive: 2 70% 52%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 52% 46%;
+    --success-foreground: 226 59% 11%;
+
+    --warning: 38 92% 56%;
+    --warning-foreground: 226 59% 11%;
+
+    --info: 213 90% 66%;
+    --info-foreground: 226 59% 11%;
+
+    --destructive-strong: 2 100% 78%;
+    --success-strong: 149 58% 64%;
+    --warning-strong: 38 95% 66%;
+    --info-strong: 213 95% 76%;
+
+    --role-teacher: 25 87% 61%;
+    --role-student: 172 61% 44%;
+    --role-parent: 225 70% 80%;
+    --role-admin: 215 16% 62%;
+
+    /* Lifted a step above the page so a band still reads as a band. */
+    --stage: 220 50% 18%;
+    --stage-raised: 218 45% 25%;
+    --stage-line: 218 35% 30%;
+    --stage-deep: 224 55% 10%;
+    --stage-glow: 216 60% 45%;
+    --stage-glow-alpha: 0.3;
+
+    --spotlight: 218 49% 23%;
+    --spotlight-foreground: 0 0% 100%;
+
+    --cover-s: 26%;
+    --cover-l: 16%;
+    --cover-line: 66%;
+
+    --chart-1: 25 87% 61%;
+    --chart-2: 172 61% 44%;
+    --chart-3: 225 70% 80%;
+    --chart-4: 215 16% 58%;
+    --chart-5: 29 90% 75%;
+
+    --logo-plate: 218 45% 27%;
+
+    --shadow-color: 224 60% 3%;
+    --band-shadow: 224 60% 3%;
+  }
+
+  /*
+   * A navy band is a local theme, not a palette of one-off colours: it
+   * rescopes the same semantic tokens every component already reads, so a
+   * heading, a button or the hero's loop diagram drawn inside one simply
+   * comes out right on navy. White text (15:1), muted slate (8.3:1), soft
+   * orange for actions (6.1:1, with deep-navy labels), teal as the second
+   * accent, navy-raised cards. A white or charcoal panel set on a band takes
+   * .surface-tokens to get the page theme back.
+   */
+  .stage,
+  .bg-spotlight {
+    --foreground: 0 0% 100%;
+    --muted-foreground: 214 22% 77%;
+    --muted: var(--stage-raised);
+    --card: var(--stage-raised);
+    --card-foreground: 0 0% 100%;
+    --secondary: var(--stage-raised);
+    --secondary-foreground: 0 0% 100%;
+    --border: var(--stage-line);
+    --input: 218 30% 38%;
+    --ring: 25 87% 61%;
+
+    --primary: 25 87% 61%;
+    --primary-foreground: 226 59% 11%;
+    --primary-soft: var(--stage-raised);
+    --brand: 25 87% 61%;
+    --brand-foreground: 226 59% 11%;
+    --navy-strong: 0 0% 100%;
+    --accent: 172 61% 44%;
+    --accent-foreground: 226 59% 11%;
+    --accent-strong: 172 61% 55%;
+
+    --role-teacher: 25 87% 61%;
+    --role-student: 172 61% 50%;
+    --role-parent: 225 70% 80%;
+
+    --logo-plate: 218 42% 30%;
+
+    --shadow-color: 226 60% 6%;
+  }
+  .stage {
+    /* focus-ring offsets and node fills sit on the navy, not the page */
+    --background: var(--stage);
+  }
+  .stage.stage-deep {
+    --stage: var(--stage-deep);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  /**
+   * Grid items default to `min-width: auto`, so a child with a wide
+   * min-content (a nowrap row, a chart, a long token) inflates its track past
+   * the container and the whole page scrolls sideways. Zero specificity, so
+   * `min-w-*` on a child still wins.
+   */
+  :where([class~='grid'], [class*=':grid']) > * {
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans text-body antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display text-foreground;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Latin runs (names, prices, codes) inside Arabic copy keep their own face. */
+  .font-latin,
+  [lang='en'],
+  .latin {
+    font-family: 'IBM Plex Sans', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  }
+
+  /* Tracking is a Latin device. Spacing Arabic letters breaks the joins. */
+  [dir='rtl'] .tracking-tight,
+  [dir='rtl'] .tracking-tighter {
+    letter-spacing: 0;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+    border-radius: calc(var(--radius) - 4px);
+  }
+
+  ::selection {
+    @apply bg-brand/25 text-foreground;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full border-[3px] border-solid border-transparent bg-muted-foreground/25 bg-clip-content;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/45 bg-clip-content;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+  }
+
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply container mx-auto;
+  }
+
+  .section-y {
+    @apply py-section;
+  }
+
+  /*
+   * Eyebrow — a mono label led by a short signal bar. It names the section;
+   * it is not a pill and it does not compete with the heading. Action-orange
+   * text led by a soft-orange bar — on a navy band both become soft orange.
+   */
+  .eyebrow {
+    @apply inline-flex items-center gap-2.5 font-mono text-[0.75rem] font-medium uppercase tracking-[0.14em] text-primary;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply inline-block h-0.5 w-5 shrink-0 rounded-full bg-brand;
+  }
+  [dir='rtl'] .eyebrow {
+    @apply font-sans text-[0.8125rem] font-semibold normal-case tracking-normal;
+  }
+
+  /* Small all-caps data label (column heads, metric names). */
+  .data-label {
+    @apply font-mono text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-muted-foreground;
+  }
+  [dir='rtl'] .data-label {
+    @apply font-sans text-[0.75rem] font-semibold normal-case tracking-normal;
+  }
+
+  .surface-card {
+    @apply rounded-lg border border-border bg-card text-card-foreground;
+  }
+
+  /* Kept for compatibility; now a plain translucent panel, no frosted glass. */
+  .glass-panel {
+    @apply border border-white/15 bg-white/10;
+  }
+
+  .rule-fade {
+    @apply h-px w-full border-0 bg-border;
+  }
+
+  .link-underline {
+    @apply relative inline-block;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 end-0 h-px w-0 bg-current transition-[width] duration-300 ease-premium;
+  }
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-muted;
+  }
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full animate-shimmer;
+    background: linear-gradient(90deg, transparent, hsl(var(--foreground) / 0.05), transparent);
+  }
+
+  /*
+   * The stage — the navy bands. A plain solid surface: no patterns, no
+   * texture. The only light on it is the soft halo the hero's loop diagram
+   * casts behind itself.
+   */
+  .stage {
+    @apply bg-stage text-stage-foreground;
+  }
+
+  /*
+   * Navy sections get depth from tone, not texture: each settles toward deep
+   * navy at its bottom edge (which only raises text contrast). Sections only —
+   * the navbar wears the stage colour flat.
+   */
+  section.stage {
+    background-image: linear-gradient(to bottom, transparent 30%, hsl(var(--stage-deep) / 0.55));
+  }
+
+  /* The hero's emphasised word inks itself deep navy as its soft-orange band
+     draws in — the one orange surface in the headline. */
+  .hero-mark {
+    color: hsl(var(--stage-foreground));
+    animation: hero-mark-ink 0.4s ease-out 1.3s both;
+  }
+  @keyframes hero-mark-ink {
+    to {
+      color: hsl(var(--primary-foreground));
+    }
+  }
+
+  /* Role marker dot — the colour language that ties the three consoles together. */
+  .role-dot {
+    @apply inline-block size-2 shrink-0 rounded-full;
+  }
+}
+
+@layer utilities {
+  /* Retired gradient text resolves to solid colour so old call sites stay legible. */
+  .text-gradient-ink {
+    @apply text-foreground;
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to left, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to left, transparent, black 8%, black 92%, transparent);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .line-clamp-2-rtl {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* RTL-aware directional icon flip for chevrons that mean "forward" */
+  [dir='rtl'] .flip-rtl {
+    transform: scaleX(-1);
+  }
+
+  .safe-bottom {
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+  }
+}
+
+/* Recharts inherits the theme rather than shipping its own palette. */
+.recharts-cartesian-axis-tick-value,
+.recharts-legend-item-text {
+  fill: hsl(var(--muted-foreground));
+  font-size: 12px;
+  font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', system-ui, sans-serif;
+}
+.recharts-cartesian-grid line {
+  stroke: hsl(var(--border));
+}
+.recharts-surface {
+  overflow: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* the band is already drawn, so the word must already be inked */
+  .hero-mark {
+    animation: none;
+    color: hsl(var(--primary-foreground));
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

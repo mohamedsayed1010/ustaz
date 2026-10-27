@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+.next/
+out/
+build/
+*.tsbuildinfo
+.vite/
+
+# Environment files and secrets. Never commit real values.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+secrets.json
+
+# The .NET API is deployed separately (ustaz.runasp.net) and its appsettings
+# hold live database credentials, so it stays out of this repository.
+Backedn/
+
+# Vercel
+.vercel/
+
+# Logs and temp files
+logs/
+*.log
+npm-debug.log*
+*.tmp
+*.temp
+.cache/
+
+# Editor / OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
